@@ -2,12 +2,186 @@
 <head>
   <meta charset="utf-8">
   <title>My Review</title>
-  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+  <!--<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>-->
+  <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
   <script type="text/javascript" src="js/lib/require.js"></script>
+  <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="bootstrap/css/bootstrap-responsive.css">
 </head>
 
 <script type="text/javascript" src="js/main.js"></script>
 
 <body>
+
+	<div class="container-fluid">
+
+		<div class="row-fluid">
+
+			<div class="span3">
+				<script type="text/template" id="sidebar_template">
+					<h3>Les Medias</h3>
+					<button class="add_media_button">Add Media</button>
+					<ul>
+						<% _.each(medias ,function(media){ %>
+							<li>
+								<a href="#" class="menu" id=<%=media.get("id")%>><%= media.get("name") %></a>
+								<button class="edit_media_button" id=<%= media.get("id") %>>Edit Media</button>
+								<button class="delete_media_button" id=<%= media.get("id") %>>Delete Media</button>
+							</li>
+						<% }); %>
+					</ul>
+				</script>
+				<div class="sidebar" id="sidebar"></div>
+			</div>
+
+			<div class="span9">
+				<!--
+				<script type="text/template" id="media_title_template">
+					<h4><%=media.get("type")%> - <%=media.get("name")%></h4>
+					<p><%=media.get("description")%></p>
+				</script>
+				<div class="row-fluid" id="media_title"></div>
+				-->
+
+
+
+				<!--
+
+				Buttons templates
+
+				-->
+
+				<script type="text/template" id="media_buttons_template">
+
+					<div class="btn-group">
+					  <button class="add_note_button" id=<%= id %>>Add Note</button>
+					</div>
+
+				</script>
+
+
+				<div class="row-fluid" id="top_buttons_row"></div>
+
+
+
+
+				<!--
+
+				New Note Form templates
+
+				-->
+
+				<script type="text/template" id="add_note_template">
+					<form>
+						<fieldset>
+							<legend>New Note</legend>
+							<label>Title</label>
+							<input type="text" class="add_note_title">
+							<label>Content</label>
+							<input type="textarea" class="add_note_content"><br><br>
+							<button type="submit" class="add_note_submit_button" id=<%= id %>>Submit</button>
+						</fieldset>
+					</form>
+				</script>
+
+
+				<!--
+
+				New Media Form template
+
+				-->
+				
+				<script type="text/template" id="new_media_form_template">
+					<form>
+						<fieldset>
+							<legend>New Media</legend>
+							<label>Type</label>
+						    <select name="type">
+						      <option>image</option>
+						      <option>video</option>
+						    </select>
+							<label>Name</label>
+							<input type="text" class="new_media_name">
+							<label>Url</label>
+							<input type="text" class="new_media_url">
+							<label>Description</label>
+							<input type="textarea" class="new_media_description"><br><br>
+							<button type="submit" class="new_media_submit_button">Submit</button>
+						</fieldset>
+					</form>
+				</script>
+
+
+				<!--
+
+				Edit Media Form template
+
+				-->
+				
+				<script type="text/template" id="edit_media_form_template">
+					<form>
+						<fieldset>
+							<legend>Edit Media</legend>
+							<label>Type</label>
+						    <select name="type">
+						      <option>image</option>
+						      <option selected>video</option>
+						    </select>
+							<label>Name</label>
+							<input type="text" class="edit_media_name" value=<%= name %>>
+							<label>Url</label>
+							<input type="text" class="edit_media_url" value=<%= url %>>
+							<label>Description</label>
+							<textarea class="edit_media_description"><%= description %></textarea><br><br>
+							<button type="submit" class="edit_media_submit_button">Submit</button>
+						</fieldset>
+					</form>
+				</script>
+
+
+				<div class="row-fluid" id="top_form"></div>
+
+
+				<!--
+
+				template pour les notes
+
+				-->
+				
+				<script type="text/template" id="notes_list_template">
+
+					<% _.each(notes ,function(note){ %>
+						<h1>
+							<%= note.get("title") %>
+							<button class="delete_note_button" id=<%= note.get("id") %>>Delete Note</button>
+						</h1><hr>
+						<b><%= note.get("content") %></b><br>
+					<% }); %>
+
+				</script>
+
+
+				<!--
+
+				template id no media selected
+
+				-->
+				
+				<script type="text/template" id="no_media_template">
+
+					<h1>No media selected...</h1>
+
+				</script>
+
+
+				<div class="row-fluid" id="main"></div>
+			
+
+			</div>
+		</div>
+	</div>
+
+	
+
 </body>
 </html>

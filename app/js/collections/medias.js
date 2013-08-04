@@ -3,7 +3,7 @@ define(['models/media'], function(Media) {
     model: Media,
 
     initialize : function() {
-      console.log('Medias collection Constructor');
+      //console.log('Medias collection Constructor');
       /*this.each(function(m){
       	console.log(json_encode(m));
       });*/
